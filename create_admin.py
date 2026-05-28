@@ -6,8 +6,14 @@ django.setup()
 
 from django.contrib.auth.models import User
 
-if not User.objects.filter(username='admin').exists():
-    User.objects.create_superuser('Vallrack', 'vallrack67@gmail.com', 'admin123')
-    print("¡Superusuario creado con éxito en la nube!")
+# Configuramos las credenciales en variables idénticas para la validación
+usuario_final = 'Vallrack'
+correo_final = 'vallrack67@gmail.com'
+clave_final = 'admin123'
+
+# Buscamos si el usuario exacto ya existe antes de intentar crearlo
+if not User.objects.filter(username=usuario_final).exists():
+    User.objects.create_superuser(usuario_final, correo_final, clave_final)
+    print(f"¡Superusuario '{usuario_final}' creado con éxito en la nube!")
 else:
-    print("El superusuario ya existe.")
+    print(f"El superusuario '{usuario_final}' ya existe en la base de datos. Saltando paso.")
