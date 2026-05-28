@@ -1,0 +1,46 @@
+{% extends 'repositorio/base.html' %}
+
+{% block title %} Servicios {% endblock %}
+
+{% block content %}
+
+<h2 style="text-align:center;">Programas</h2>
+
+{% if servicios %}
+
+<div class="card-content">
+    <h3>Servicios Encontrados: {{ servicios|length }}</h3>
+</div>
+
+<!-- CONTENEDOR FLEX -->
+<div class="produk">
+
+    {% for servicio in servicios %}
+    <div class="card">
+
+        <img src="{{ servicio.imagen.url }}" alt="{{ servicio.titulo }}">
+
+        <div class="card-content">
+            <h3>{{ servicio.titulo }}</h3>
+            <p>{{ servicio.contenido }}</p>
+            <p>{{ servicio.creado }}</p>
+            <p>{{ servicio.actualizado }}</p>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="card">
+    <div class="card-content">
+        <h3>¡Lo Sentimos!</h3>
+        <p>No tenemos servicios registrados en el momento</p>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,213 @@
+    :root {
+    --bg: #fafafa;
+    --text: #2d3436;
+    --accent: #ffb142;
+    --hero-overlay: rgba(0, 0, 0, 0.4);
+    --card-bg: #ffffff;
+    --transition: 0.5s ease;
+}
+
+/* Dynamic Vibe States */
+[data-vibe="party"] { --bg: #111; --text: #f5f6fa; --accent: #8c7ae6; --card-bg: #1e1e24; --hero-overlay: rgba(0, 0, 0, 0.6); }
+[data-vibe="spirit"] { --bg: #f4f1ea; --text: #4a4036; --accent: #44bd32; --card-bg: #fffcf8; }
+[data-vibe="sunny"] { --bg: #fdfbf7; --text: #2f3640; --accent: #e1b12c; --card-bg: #ffffff; }
+[data-vibe="adventure"] { --bg: #f0f3f4; --text: #2c3e50; --accent: #0097e6; --card-bg: #ffffff; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0; width: 100%;
+    display: flex; justify-content: space-between;
+    padding: 20px 5%; box-sizing: border-box;
+    z-index: 100;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+    color: white;
+}
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: 1px; }
+.nav-links a { color: white; text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+/* Hero Section */
+.hero {
+    height: 90vh;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    display: flex; align-items: center; justify-content: center;
+    transition: background-image 0.8s ease-in-out;
+}
+.hero-overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--hero-overlay); transition: background 0.8s ease;
+}
+.hero-content {
+    position: relative; z-index: 10; text-align: center; color: white;
+}
+.hero h1 { font-size: 4rem; margin-bottom: 10px; }
+.hero h1 span { color: var(--accent); transition: color var(--transition); }
+.hero p { font-size: 1.2rem; margin-bottom: 40px; }
+
+/* Glassmorphism Vibe Picker */
+.vibe-picker {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 10px; border-radius: 50px;
+    display: inline-flex; gap: 10px;
+}
+.vibe-picker button {
+    border: none; background: transparent; color: white;
+    padding: 12px 25px; border-radius: 30px; font-family: inherit; font-size: 1rem;
+    cursor: pointer; transition: 0.3s;
+}
+.vibe-picker button:hover, .vibe-picker button.active {
+    background: var(--accent); color: #fff; font-weight: 800;
+}
+
+/* Product Grid */
+.products { padding: 80px 5%; text-align: center; }
+.products h2 { font-size: 2.5rem; margin-bottom: 40px; }
+.product-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; margin-bottom: 50px;
+}
+.card {
+    background: var(--card-bg); border-radius: 20px;
+    overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s, box-shadow 0.3s; text-align: left;
+}
+.card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.card-img { width: 100%; height: 250px; object-fit: cover; }
+.card-info { padding: 25px; }
+.card h3 { margin: 0 0 10px 0; font-size: 1.4rem; }
+.price { font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 20px; display: block;}
+
+.btn-main {
+    background: var(--accent); color: #fff; border: none;
+    padding: 15px 40px; border-radius: 30px; font-size: 1.1rem;
+    font-weight: 800; cursor: pointer; transition: 0.3s;
+}
+.btn-main:hover { opacity: 0.9; transform: scale(1.05); }
+
+/* Contact & Footer */
+.contact { padding: 80px 5%; display: flex; justify-content: center; }
+.contact-card {
+    background: var(--card-bg); padding: 50px; border-radius: 30px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05); width: 100%; max-width: 600px; text-align: center;
+}
+.contact-card input {
+    width: 100%; padding: 15px; margin-bottom: 20px;
+    border: 1px solid #ddd; border-radius: 10px; font-family: inherit; box-sizing: border-box;
+}
+footer {
+    padding: 40px 5%; border-top: 1px solid rgba(128,128,128,0.2);
+    display: flex; justify-content: space-between;
+}
+.socials a { color: var(--text); text-decoration: none; margin-left: 20px; font-weight: 500; }
+
+/* Back to Top Plane Button */
+#backToTop {
+    position: fixed; bottom: -60px; right: 30px;
+    background: var(--accent); color: white;
+    width: 50px; height: 50px; border-radius: 50%; border: none;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    transition: bottom 0.3s, transform 0.3s; z-index: 999;
+}
+#backToTop.show { bottom: 30px; }
+#backToTop svg { width: 24px; height: 24px; transition: transform 0.3s; }
+#backToTop:hover svg { transform: rotate(-15deg) scale(1.1); }
+
+/* The Fly Away Animation */
+.take-off {
+    animation: flyUpAndAway 1s cubic-bezier(0.5, 0, 0.2, 1) forwards !important;
+}
+
+@keyframes flyUpAndAway {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-50vh) translateX(50px) scale(1.5) rotate(15deg); opacity: 1; }
+    100% { transform: translateY(-120vh) translateX(100px) scale(0.5) rotate(45deg); opacity: 0; }
+}
+/* Footer Icons Styling */
+.socials {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.socials a {
+    color: var(--text);
+    transition: transform 0.3s, color 0.3s;
+    display: flex;
+}
+
+.socials a:hover {
+    transform: scale(1.1);
+    color: var(--accent);
+}
+
+/* Burger Menu Hidden on Desktop */
+.burger {
+    display: none;
+    cursor: pointer;
+    z-index: 101; /* Keeps it above the mobile menu */
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: white; 
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive Design for Mobile */
+@media screen and (max-width: 768px) {
+    /* Show the burger */
+    .burger { display: block; }
+    
+    /* Adjust hero text for mobile */
+    .hero h1 { font-size: 2.5rem; }
+    .vibe-picker { flex-wrap: wrap; justify-content: center; border-radius: 20px; }
+    
+    /* Hide default nav, create the slide-out menu */
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        top: 0;
+        height: 100vh;
+        background-color: var(--card-bg); /* Uses current theme color */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+        z-index: 100;
+    }
+
+    .nav-links a {
+        color: var(--text); /* Dark text for the solid background */
+        font-size: 2rem;
+        margin: 20px 0;
+    }
+
+    /* Class added by JS to slide the menu in */
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    /* Burger Animation when Open */
+    .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); background-color: var(--text); }
+    .toggle .line2 { opacity: 0; }
+    .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); background-color: var(--text); }
+}

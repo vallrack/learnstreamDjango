@@ -1,0 +1,60 @@
+{% extends 'repositorio/base.html' %}
+
+{% block title %} Tienda {% endblock %}
+
+{% block content %}
+
+<h2 style="text-align:center; margin-top: 20px;">Productos</h2>
+
+{% if tiendas %}
+
+<div class="card-content">
+    <h3>Productos Encontrados: {{ tiendas|length }}</h3>
+</div>
+
+<div class="produk">
+
+    {% for producto in tiendas %}
+    <div class="card">
+
+        {% if producto.imagenP %}
+            <img src="{{ producto.imagenP.url }}" alt="{{ producto.nombreP }}">
+        {% endif %}
+
+        <div class="card-content">
+            {# --- AQUÍ SE MUESTRA LA CATEGORÍA --- #}
+            <span style="background-color: #f0f0f0; padding: 3px 8px; border-radius: 5px; font-size: 0.85em; color: #555; font-weight: bold;">
+                {{ producto.categorias.nombreC }}
+            </span>
+
+            <h3 style="margin-top: 10px;">{{ producto.nombreP }}</h3>
+            <p>{{ producto.descripcion }}</p>
+            <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+            
+            <p>
+                <strong>Estado:</strong>
+                {% if producto.disponibilidad %}
+                    <span style="color: green; font-weight: bold;">Disponible</span>
+                {% else %}
+                    <span style="color: red; font-weight: bold;">Agotado</span>
+                {% endif %}
+            </p>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+{% else %}
+
+<div class="card" style="text-align: center; padding: 20px; max-width: 400px; margin: 20px auto;">
+    <div class="card-content">
+        <h3>¡Lo Sentimos!</h3>
+        <p>En el momento no tenemos productos registrados</p>
+    </div>
+</div>
+
+{% endif %}
+
+{% endblock %}

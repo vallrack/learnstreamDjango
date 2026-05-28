@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Kopi Nusantara {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/nuevo.css' %}">
+</head>
+<body>
+
+<header>
+    <h1>Kopi Nusantara</h1>
+    <p>Rasa Asli Indonesia dalam Setiap Tegukan</p>
+</header>
+
+<nav class="{% if request.path == '/' %} active {% endif %}">
+    <a href="{% url 'Home' %}">Home</a>
+    <a href="{% url 'Servicios' %}">Servicios</a>
+    <a href="{% url 'Contacto' %}">Contacto</a>
+    <a href="{% url 'Tienda' %}">Tienda</a>
+    <a href="{% url 'admin:index' %}">Log In</a>
+</nav>
+
+<section class="hero">
+    <h2>Nikmati Kopi Berkualitas</h2>
+    <p>Dari biji pilihan hingga cita rasa terbaik</p>
+</section>
+<!-- tomar del diseño principal lo necesario del header o body -->
+{% block content %}
+
+{% endblock %}
+<!-- tomar del diseño principal lo necesario del footer -->
+<div class="container" id="tentang">
+    <h2>Tentang Kami</h2>
+    <p>Kami menyediakan kopi terbaik dari berbagai daerah di Indonesia dengan kualitas terjamin dan rasa autentik.</p>
+</div>
+
+<div class="container" id="kontak">
+    <h2>Kontak</h2>
+    <p>Email: kopi@nusantara.com</p>
+    <p>WhatsApp: 0812-3456-7890</p>
+</div>
+
+<footer>
+    <p>&copy; 2026 Kopi Nusantara</p>
+</footer>
+  <script src="{% static 'js/nuevo.js' %}"></script>
+</body>
+</html>
