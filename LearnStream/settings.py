@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-abmj13jv3+#4@ilofjxmafhe&)u!o4-53+e0c!31$^jx)wm*ro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['learnstreamdjango2-0.onrender.com', 'localhost', '127.0.0.1', '.onrender.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
 
 
 # Application definition
@@ -105,9 +105,10 @@ WSGI_APPLICATION = 'LearnStream.wsgi.application'
 
 # }
 
+
 DATABASES = {
     'default': dj_database_url.config(
-        # Si encuentra la variable en Render, usará Postgres; si no, usará tu MySQL local de Laragon
+        # Si encuentra la variable DATABASE_URL en Render usa Postgres; si no, usa el MySQL de Laragon
         default=os.environ.get('DATABASE_URL', 'mysql://root:@127.0.0.1:3306/learnstream')
     )
 }
