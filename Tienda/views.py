@@ -5,4 +5,4 @@ from Tienda.models import *
 # Vista Tienda
 def tienda(request):
     tiendas = Producto.objects.all()
-    return render(request, "Tienda/tienda.html", {"tiendas": tiendas})
+    return render(request, "tienda/tienda.html", {"tiendas": tiendas})
