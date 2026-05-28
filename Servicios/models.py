@@ -1,6 +1,6 @@
 from django.db import models
 from tabnanny import verbose #Permite poner alias
-from tkinter import image_names #Permite trabajar con imagenes 
+#from tkinter import image_names #Permite trabajar con imagenes 
 # Create your models here.
 
 class Servicio(models.Model):
