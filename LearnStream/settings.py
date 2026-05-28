@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os 
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,36 +76,41 @@ WSGI_APPLICATION = 'LearnStream.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-  
-# Esto es para trabajar con Mysql
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+    
+# # Esto es para trabajar con Mysql
 
-    #Con qué máquina vamos a trabajar
-    'ENGINE':'django.db.backends.mysql',
-    #Nombre de la base de datos
-    'NAME': 'learnstream',
-    #Usuario del servidor
-    'USER':'root',
-    #CLave del servidor
-    'PASSWORD': '',
-    #HOST
-    'HOST':'localhost',
-    #Puerto de conexión
-    'PORT':'3306',
-    #Para que haga la migración es necesario hacer las restricciones
-    'OPTIONS':{
-        'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
-        },
+#     #Con qué máquina vamos a trabajar
+#     'ENGINE':'django.db.backends.mysql',
+#     #Nombre de la base de datos
+#     'NAME': 'learnstream',
+#     #Usuario del servidor
+#     'USER':'root',
+#     #CLave del servidor
+#     'PASSWORD': '',
+#     #HOST
+#     'HOST':'localhost',
+#     #Puerto de conexión
+#     'PORT':'3306',
+#     #Para que haga la migración es necesario hacer las restricciones
+#     'OPTIONS':{
+#         'init_command':"SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
         
 
-    }
+#     }
 
+# }
+
+DATABASES = {
+    'default': dj_database_url.config(
+        # Si encuentra la variable en Render, usará Postgres; si no, usará tu MySQL local de Laragon
+        default=os.environ.get('DATABASE_URL', 'mysql://root:@127.0.0.1:3306/learnstream')
+    )
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
