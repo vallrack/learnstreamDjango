@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-abmj13jv3+#4@ilofjxmafhe&)u!o4-53+e0c!31$^jx)wm*ro
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['learnstreamdjango2-0.onrender.com', 'localhost', '127.0.0.1', '.onrender.com']
 
 
 # Application definition
